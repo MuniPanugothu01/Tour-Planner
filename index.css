@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+}
+
+body {
+    /* background-color: #010101; */
+}
+
+.banner {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.40), rbga(0, 0, 0, 0.40));
+    background-position: center;
+    background-size: center;
+
+
+
+}
+
+.navbar {
+    width: 90%;
+    padding: 30px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+}
+
+.Logo {
+    width: 160px;
+    margin-top: -10px;
+    cursor: pointer;
+}
+
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 20px;
+
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    /* color: #010101; */
+    font-weight: 600;
+    padding: 15px;
+}
+
+li a:hover {
+    background-color: #ffff;
+    /* background-color: orange; */
+
+    transition: 0.6s;
+}
+
+.navbar a:hover {
+    color: #010101;
+}
+
+.content {
+    width: 100%;
+    position: absolute;
+    color: #ffff;
+    top: 45%;
+    transform: translateY(-50%);
+    text-align: center;
+
+
+}
+
+.content h1 {
+    margin-top: 80px;
+    font-size: 90px;
+    font-weight: 800;
+}
+
+button {
+    width: 200px;
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 25px;
+    color: #010101;
+    border: 2px solid transparent;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: rgb(0, 155, 256);
+    transition: 0.5s;
+}
+
+button:hover {
+    color: #f1f1f1;
+}
+
+.banner {
+    z-index: 100;
+}
+
+.banner video {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    filter: blur(3px);
+    /* chat */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensures video covers the entire background  */
+
+}
+
+@media(min-aspect-ratio:16/9) {
+    .banner video {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media(max-aspect-ratio: 16/9) {
+    .banner video {
+        width: auto;
+        height: 100%;
+    }
+}
+
+
+/* media quires for mobile screen */
+
+
+
+
+
+
+/* Samsung gallaxy s20 screen start */
+
+@media screen and (max-width:595.2px) {
+
+    .banner video,
+    .source {
+        width: 100vw;
+
+        height: 50%;
+        top: 1%;
+        filter: blur(2px);
+        /* max-height: 50vh; */
+
+        /* object-fit: contain; */
+    }
+
+
+    .content .Explore_the_world {
+        font-size: 25px;
+        font-family: 'Times New Roman', Times, serif;
+        margin-top: -100px;
+    }
+
+    .Explore {
+        height: 40px;
+        min-width: 10px;
+        padding: 2px;
+    }
+
+    /* Navbar */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        padding: 2px 0;
+        /* Space out the logo and the links */
+        align-items: center;
+        /* Vertically center the content */
+    }
+
+    .navbar img {
+        height: 40px;
+        /* Adjust the logo size for mobile */
+        width: 40px;
+    }
+
+    /* Target the list inside the navbar */
+    .navbar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+    }
+
+    .navbar ul li {
+        display: inline;
+
+        /* Keep the list items inline */
+    }
+
+    .navbar ul li a {
+        text-decoration: none;
+        padding: 10px;
+        font-size: 10px;
+        /* Adjust font size for mobile */
+    }
+
+    /* This selector was incorrect, fixed below */
+    .navbar ul li a {
+        top: 1%;
+        display: flex;
+        justify-content: space-evenly;
+
+    }
+}
+
+/* Samsung gallaxy s20 screen end */
+
+
+
+
+
+/* Ipad MINI screen size start */
+
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+
+    .banner video,
+    .source {
+        height: 50%;
+        width: 100%;
+        top: 0;
+        filter: blur(2px);
+    }
+
+    .content .Explore_the_world {
+
+        font-size: 50px;
+        margin-top: -140px;
+
+
+    }
+}
+
+/* Ipad MINI screen size end */
