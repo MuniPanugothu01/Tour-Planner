@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Form with Background</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body with Fullscreen Background Image */
+        body {
+            font-family: Arial, sans-serif;
+            background: url('/Images/Payment.webp') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            overflow: hidden;
+            opacity: 1;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/Images/Payment.webp') no-repeat center center/cover;
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #444;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-container label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-container input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+            outline: none;
+            transform: scale(1.02);
+        }
+
+        .form-container button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .modal-content {
+            background: #fff;
+            color: #333;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.5s ease-in-out;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: #007bff;
+        }
+
+        .modal-content p {
+            margin: 10px 0;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .close-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: #c82333;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Form Container -->
+    <div class="form-container">
+        <h1>Interactive Form</h1>
+        <form id="userForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <label for="cardNumber">Card Number</label>
+            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="16" required>
+
+            <label for="expiry">Expiry Date</label>
+            <input type="month" id="expiry" required>
+
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2>Submitted Details</h2>
+            <p><strong>Name:</strong> <span id="displayName"></span></p>
+            <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+            <p><strong>Card Number:</strong> <span id="displayCardNumber"></span></p>
+            <p><strong>Expiry:</strong> <span id="displayExpiry"></span></p>
+            <p><strong>CVV:</strong> <span id="displayCVV"></span></p>
+            <button class="close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Form Submit Handler
+        document.getElementById("userForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Get Values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const cardNumber = document.getElementById("cardNumber").value;
+            const expiry = document.getElementById("expiry").value;
+            const cvv = document.getElementById("cvv").value;
+
+            // Store data in localStorage
+            localStorage.setItem("name", name);
+            localStorage.setItem("email", email);
+            localStorage.setItem("cardNumber", cardNumber);
+            localStorage.setItem("expiry", expiry);
+            localStorage.setItem("cvv", cvv);
+
+            // Display in Modal
+            document.getElementById("displayName").textContent = name;
+            document.getElementById("displayEmail").textContent = email;
+            document.getElementById("displayCardNumber").textContent = formatCardNumber(cardNumber);
+            document.getElementById("displayExpiry").textContent = expiry;
+            document.getElementById("displayCVV").textContent = cvv;
+
+            // Show Modal
+            document.getElementById("modal").style.display = "flex";
+        });
+
+        // Format Card Number (Add space every 4 digits)
+        function formatCardNumber(number) {
+            return number.replace(/\d{4}(?=.)/g, "$& ");
+        }
+
+        // Close Modal Function
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        // Close Modal on Background Click
+        window.onclick = function (e) {
+            const modal = document.getElementById("modal");
+            if (e.target === modal) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
+
+</html>

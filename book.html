@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
     <!-- custom css files -->
-    <link rel="stylesheet" href="utube.css">
+    <link rel="stylesheet" href="style.css">
 
 
 
@@ -44,60 +44,128 @@
 
     <!-- Booking Section starts -->
 
+    <!-- <section class="booking">
+        <h1 class="heading-title">Book Your Trips!</h1>
+        <form action="book_form.html" method="post" class="book-from">
+            <div class="flex">
+                <div class="inputBox">
+                    <span>Name: </span>
+                    <input type="text" name="name" id="name" placeholder="Enter your name" required>
+                </div>
+                <div class="inputBox">
+                    <span>Email: </span>
+                    <input type="email" name="email" id="email" placeholder="Enter your Email" required>
+                </div>
+                <div class="inputBox">
+                    <span>Phone No: </span>
+                    <input type="number" name="phone" id="phone" placeholder="Enter your Phone Number" required>
+                </div>
+                <div class="inputBox">
+                    <span>Address: </span>
+                    <input type="text" name="address" id="address" placeholder="Enter your Address" required>
+                </div>
+                <div class="inputBox">
+                    <span>Where to: </span>
+                    <input type="text" name="location" id="location" placeholder="Place where you want to visit"
+                        required>
+                </div>
+                <div class="inputBox">
+                    <span>How Many: </span>
+                    <input type="number" name="quest" id="quest" placeholder="Number of quests" required>
+                </div>
+                <div class="inputBox">
+                    <span>Arrivals: </span>
+                    <input type="date" name="Arrivals" id="arrivals">
+                </div>
+                <div class="inputBox">
+                    <span>Leaving: </span>
+                    <input type="date" name="Leaving" id="leaving">
+                </div>
+            </div>
+            <a href="Card_Payment.html" class="btn" id="paymentButton">Proceed to Payment</a>
+        </form>
+    </section> -->
+
+
+
     <section class="booking">
         <h1 class="heading-title">Book Your Trips!</h1>
         <form action="book_form.html" method="post" class="book-from">
             <div class="flex">
                 <div class="inputBox">
                     <span>Name: </span>
-                    <input type="text" name="name" id="" placeholder="Enter your name">
+                    <input type="text" name="name" id="name" placeholder="Enter your name" required>
                 </div>
-
                 <div class="inputBox">
                     <span>Email: </span>
-                    <input type="email" name="email" id="" placeholder="Enter your Email">
+                    <input type="email" name="email" id="email" placeholder="Enter your Email" required>
                 </div>
-
                 <div class="inputBox">
-                    <span>Pone No: </span>
-                    <input type="number" name="phone" id="" placeholder="Enter your Phone Number">
+                    <span>Phone No: </span>
+                    <input type="number" name="phone" id="phone" placeholder="Enter your Phone Number" required>
                 </div>
-
                 <div class="inputBox">
                     <span>Address: </span>
-                    <input type="text" name="address" id="" placeholder="Enter your Address">
+                    <input type="text" name="address" id="address" placeholder="Enter your Address" required>
                 </div>
-
                 <div class="inputBox">
                     <span>Where to: </span>
-                    <input type="text" name="location" id="" placeholder="Place where you want to visit ">
+                    <input type="text" name="location" id="location" placeholder="Place where you want to visit"
+                        required>
                 </div>
-
                 <div class="inputBox">
                     <span>How Many: </span>
-                    <input type="number" name="quest" id="" placeholder="Number of quest! ">
+                    <input type="number" name="quest" id="quest" placeholder="Number of quests" required>
                 </div>
-
                 <div class="inputBox">
                     <span>Arrivals: </span>
-                    <input type="date" name="Arrivals" id="" >
+                    <input type="date" name="Arrivals" id="arrivals">
                 </div>
-
-
                 <div class="inputBox">
                     <span>Leaving: </span>
-                    <input type="date" name="Leaving" id="" >
+                    <input type="date" name="Leaving" id="leaving">
                 </div>
             </div>
-            <input type="submit" value="submit" class="btn" name="send">
+            <button type="button" class="btn" id="paymentButton">Proceed to Payment</button>
         </form>
     </section>
 
+    <script>
+        // Store form data in localStorage when the "Proceed to Payment" button is clicked
+        document.getElementById("paymentButton").addEventListener("click", function (e) {
+            // Prevent default form submission
+            e.preventDefault();
+
+            // Get form data
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const address = document.getElementById("address").value;
+            const location = document.getElementById("location").value;
+            const quests = document.getElementById("quest").value;
+            const arrivals = document.getElementById("arrivals").value;
+            const leaving = document.getElementById("leaving").value;
+
+            // Store form data in localStorage
+            localStorage.setItem("bookingData", JSON.stringify({
+                name: name,
+                email: email,
+                phone: phone,
+                address: address,
+                location: location,
+                quests: quests,
+                arrivals: arrivals,
+                leaving: leaving
+            }));
+
+            // Redirect to payment page
+            window.location.href = "Card_Payment.html";
+        });
+    </script>
+
+
+
     <!-- Booking Section ends -->
-
-
-
-
 
 
 
@@ -150,7 +218,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <!-- custom js file links. -->
-    <script src="utube.js">
+    <script src="script.js">
 
     </script>
 </body>

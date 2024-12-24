@@ -64,3 +64,29 @@ loadMoreBtn.onclick = () => {
 
 
 
+// Booking script start
+
+document.getElementById("paymentButton").addEventListener("click", function (event) {
+    event.preventDefault();
+
+    // Collect the booking form data
+    const bookingData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        address: document.getElementById("address").value,
+        location: document.getElementById("location").value,
+        quest: document.getElementById("quest").value,
+        arrivals: document.getElementById("arrivals").value,
+        leaving: document.getElementById("leaving").value,
+    };
+
+    // Save to localStorage
+    localStorage.setItem('bookingData', JSON.stringify(bookingData));
+
+    // Redirect to payment page
+    window.location.href = "payment.html";
+});
+
+
+

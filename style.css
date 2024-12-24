@@ -629,6 +629,59 @@ section {
 
 
 
+/* Booking form style start */
+
+.booking .book-from {
+    padding: 2rem;
+    background: var(--light-bg);
+}
+
+.booking .book-from .flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+}
+
+.booking .book-from .flex .inputBox {
+    flex: 1 1 41rem;
+}
+
+.booking .book-from .flex .inputBox input {
+    width: 100%;
+    padding: 1.2rem 1.4rem;
+    font-size: 1.6rem;
+    color: var(--light-black);
+    text-transform: none;
+    margin-top: 1.5rem;
+    border: var(--border);
+}
+
+.booking .book-from .flex .inputBox input:focus {
+    background: var(--black);
+    color: var(--white);
+}
+
+.booking .book-from .flex .inputBox input:focuS::placeholder {
+    color: var(--light-white);
+}
+
+.booking .book-from .flex .inputBox span {
+    font-size: 1.9rem;
+    color: var(--light-black);
+}
+
+
+.booking .book-from .btn {
+    margin-top: 2rem;
+}
+
+/* Booking form Style end */
+
+
+
+
+
 
 /* Footer style start */
 .footer {
