@@ -1,120 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payment Page</title>
     <style>
-        /* Apply background image */
-        body {
-            font-family: Arial, sans-serif;
-            background: url(Images/booking-img4.jpg) no-repeat center center fixed;
-            background-size: cover;
-            margin: 0;
-            padding: 0;
-            
-        
-        }
+      /* Apply background image */
+      body {
+        font-family: Arial, sans-serif;
+        background: url(Images/booking-img4.jpg) no-repeat center center fixed;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+      }
 
-        /* Section container */
-        .booking-summary {
-            text-align: center;
-            padding: 50px 20px;
-        }
+      /* Section container */
+      .booking-summary {
+        text-align: center;
+        padding: 50px 20px;
+      }
 
-        /* Style the heading */
-        .heading-title {
-            font-size: 36px;
-            font-weight: bold;
-            color: #ffffff;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
-        }
+      /* Style the heading */
+      .heading-title {
+        font-size: 36px;
+        font-weight: bold;
+        color: #ffffff;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+      }
 
-        /* Table styling */
-        table {
-            width: 90%;
-            margin: 0 auto;
-            border-collapse: collapse;
-            background-color: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+      /* Table styling */
+      table {
+        width: 90%;
+        margin: 0 auto;
+        border-collapse: collapse;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
 
-        table,
-        th,
-        td {
-            border: 1px solid #ddd;
-        }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
 
-        th,
-        td {
-            padding: 10px;
-            text-align: center;
-        }
+      th,
+      td {
+        padding: 10px;
+        text-align: center;
+      }
 
-        th {
-            background-color: #4CAF50;
-        
-            color: white;
-        }
+      th {
+        background-color: #4caf50;
 
-        .btn {
-            padding: 5px 10px;
-            margin: 5px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-        }
+        color: white;
+      }
 
-        .btn.confirm {
-            background-color: #4CAF50;
-            color: white;
-        }
+      .btn {
+        padding: 5px 10px;
+        margin: 5px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+      }
 
-        .btn.cancel {
-            background-color: #f44336;
-            color: white;
-        }
+      .btn.confirm {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      .btn.cancel {
+        background-color: #f44336;
+        color: white;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <section class="booking-summary">
-        <h1 class="heading-title">Booking Summary</h1>
-        <table id="bookingTable">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Address</th>
-                    <th>Where To</th>
-                    <th>How Many</th>
-                    <th>Arrivals</th>
-                    <th>Leaving</th>
-                    <th>Cancel</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Data will be dynamically inserted here -->
-            </tbody>
-        </table>
+      <h1 class="heading-title">Booking Summary</h1>
+      <table id="bookingTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Where To</th>
+            <th>How Many</th>
+            <th>Arrivals</th>
+            <th>Leaving</th>
+            <th>Cancel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Data will be dynamically inserted here -->
+        </tbody>
+      </table>
     </section>
 
     <script>
-        // Retrieve booking data from localStorage
-        const bookingData = JSON.parse(localStorage.getItem("bookingData"));
+      // Retrieve booking data from localStorage
+      const bookingData = JSON.parse(localStorage.getItem("bookingData"));
 
-        if (bookingData) {
-            // Get the table body element
-            const tableBody = document.getElementById("bookingTable").querySelector("tbody");
+      if (bookingData) {
+        // Get the table body element
+        const tableBody = document
+          .getElementById("bookingTable")
+          .querySelector("tbody");
 
-            // Create a new row for the data
-            const row = document.createElement("tr");
+        // Create a new row for the data
+        const row = document.createElement("tr");
 
-            // Populate row with data
-            row.innerHTML = `
+        // Populate row with data
+        row.innerHTML = `
                 <td>${bookingData.name}</td>
                 <td>${bookingData.email}</td>
                 <td>${bookingData.phone}</td>
@@ -129,27 +128,28 @@
                 </td>
             `;
 
-            // Append the row to the tables
-            tableBody.appendChild(row);
-        }
+        // Append the row to the tables
+        tableBody.appendChild(row);
+      }
 
-        // Confirm booking function
-        function confirmBooking() {
-            alert("Booking confirmed!");
-        }
+      // Confirm booking function
+      function confirmBooking() {
+        alert("Booking confirmed!");
+      }
 
-        // Cancel booking function
-        function cancelBooking() {
-            // Clear localStorage data
-            localStorage.removeItem("bookingData");
+      // Cancel booking function
+      function cancelBooking() {
+        // Clear localStorage data
+        localStorage.removeItem("bookingData");
 
-            // Remove the row from the table
-            const tableBody = document.getElementById("bookingTable").querySelector("tbody");
-            tableBody.innerHTML = ""; // Clear all rows
+        // Remove the row from the table
+        const tableBody = document
+          .getElementById("bookingTable")
+          .querySelector("tbody");
+        tableBody.innerHTML = ""; // Clear all rows
 
-            alert("Booking canceled!");
-        }
+        alert("Booking canceled!");
+      }
     </script>
-</body>
-
+  </body>
 </html>
